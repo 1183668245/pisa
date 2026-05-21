@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中本聪披萨协议</title>
+  <link rel="icon" type="image/webp" href="./素材/logo.webp" />
+  <link rel="apple-touch-icon" href="./素材/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-logo" src="./素材/logo.webp" alt="中本聪披萨协议 Logo" />
+        <div>
+          <div class="brand-title">中本聪披萨协议</div>
+          <div class="brand-sub">披萨节分食实验</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#hero">首页</a>
+        <a href="#seats">切片区</a>
+        <button id="openBlindBoxModalBtn" type="button" class="nav-modal-btn">披萨配方盒</button>
+        <button id="openMyModalBtn" type="button" class="nav-modal-btn">我的</button>
+        <a href="#rules">分食规则</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button id="contractInfoBtn" class="ghost-btn">合约信息</button>
+        <button id="connectWalletBtn" class="primary-btn">连接钱包</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero-content-wrapper">
+          <div class="hero-copy">
+            <h1 class="hero-title-en">Satoshi<br/><span class="text-primary">Pizza</span> Protocol</h1>
+            <h2 class="hero-title-cn text-primary">中本聪披萨协议</h2>
+            <p class="hero-desc">100 个切片位，一张永不冷却的链上披萨</p>
+            
+            <div class="hero-features">
+              <div class="feature-item">
+                <div class="feature-icon feature-icon-pizza"></div>
+                <span class="feature-text">切片竞争</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon feature-icon-dice"></div>
+                <span class="feature-text">道具成长</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon feature-icon-coins"></div>
+                <span class="feature-text">回馈分配</span>
+              </div>
+              <div class="feature-item">
+                <div class="feature-icon feature-icon-chart"></div>
+                <span class="feature-text">策略致胜</span>
+              </div>
+            </div>
+            
+            <div class="hero-banner">
+              抢热切，守余温，攒配方，分披萨！
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="./素材/pisa.webp" alt="Satoshi Pizza" />
+          </div>
+        </div>
+
+        <div class="hero-stats hero-metrics">
+          <div class="hero-metric-card">
+            <div class="hero-metric-copy">
+              <span>餐桌回馈池（BNB）</span>
+              <strong id="heroBnbPool">--</strong>
+              <em>链上状态实时同步</em>
+            </div>
+          </div>
+          <div class="hero-metric-card">
+            <div class="hero-metric-copy">
+              <span>配方沉淀池</span>
+              <strong id="heroBlindBoxPool">--</strong>
+              <em>配方沉淀持续汇聚</em>
+            </div>
+          </div>
+          <div class="hero-metric-card">
+            <div class="hero-metric-copy">
+              <span>切片位占用进度</span>
+              <strong id="heroOccupiedSeats">-- / 100</strong>
+              <em>百席争夺持续推进</em>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section hero-banners-section">
+        <div class="hero-banners-grid">
+          <img src="./素材/玩法.webp" alt="玩法介绍" class="hero-banner-img" />
+          <img src="./素材/dfb96695-3d0d-41f1-a33e-d9cabcb9702b.webp" alt="活动介绍" class="hero-banner-img" />
+        </div>
+      </section>
+
+      <section id="seats" class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">切片区</p>
+            <h2>100 个切片位</h2>
+          </div>
+          <div class="seat-filters">
+            <button class="chip active" data-filter="all">全部切片</button>
+            <button class="chip" data-filter="core">热切区</button>
+            <button class="chip" data-filter="mid">热门区</button>
+            <button class="chip" data-filter="outer">余温区</button>
+            <button class="chip" data-filter="available">仅看可接手</button>
+            <button class="chip" data-filter="mine">仅看我的</button>
+          </div>
+        </div>
+
+        <div class="seats-summary card soft-card">
+          <div><span>切片代币</span><strong id="tokenMetaText">--</strong></div>
+          <div><span>当前筛选</span><strong id="seatFilterText">全部切片位</strong></div>
+          <div><span>最新可读状态</span><strong id="lastUpdatedText">--</strong></div>
+        </div>
+
+        <div class="seats-table card">
+          <div class="seats-table-wrap">
+            <table class="seats-table-grid">
+              <thead>
+                <tr>
+                  <th>切片位</th>
+                  <th>切片区</th>
+                  <th>价格</th>
+                  <th>份量</th>
+                  <th>状态</th>
+                  <th>持有人</th>
+                </tr>
+              </thead>
+              <tbody id="seatsGrid"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="recent" class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">分食记录</p>
+            <h2>最新接手记录</h2>
+          </div>
+          <span class="section-tip">每一次接手，都在餐桌上留下记录</span>
+        </div>
+        <div id="recentRecords" class="records-list card"></div>
+      </section>
+
+      <section id="rules" class="section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">规则摘要</p>
+            <h2>分食规则</h2>
+          </div>
+          <button id="openRulesBtn" class="ghost-btn">查看完整说明</button>
+        </div>
+
+        <div class="rules-grid">
+          <article class="card soft-card">
+            <h3>切片接手</h3>
+            <p>切片被拿走后进入 30 分钟余温期，余温结束后可再次接手。</p>
+          </article>
+          <article class="card soft-card">
+            <h3>放回餐桌</h3>
+            <p>主动放回 ≤60 分钟返还 80%，超过 60 分钟返还 95%。</p>
+          </article>
+          <article class="card soft-card">
+            <h3>披萨配方盒</h3>
+            <p>每次 10 万代币，部分进入配方沉淀池，奖励全部先进配方袋。</p>
+          </article>
+          <article class="card soft-card">
+            <h3>餐桌回馈</h3>
+            <p>通过接手切片、开配方盒、使用配方袋与领取回馈参与整个循环。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer card">
+      <div class="footer-copy">
+        <strong>免责说明</strong>
+        <p>本页面为链上交互界面，所有结果以链上合约最终状态为准。数字资产存在波动与操作风险，请谨慎参与。</p>
+        <div class="footer-socials">
+          <a class="footer-social-link" href="https://x.com/0x_bnb_dev/status/2057406187453513856?s=20" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a class="footer-social-link" href="https://t.me/bnbdev_community" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <button id="footerContractBtn" class="text-btn">合约信息</button>
+        <button id="refreshBtn" class="text-btn">立即刷新</button>
+      </div>
+    </footer>
+  </div>
+
+  <div id="statusToast" class="status-toast hidden"></div>
+
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="loading-card card">
+      <div class="spinner"></div>
+      <strong id="loadingTitle">处理中</strong>
+      <p id="loadingText">请在钱包中确认，并等待链上返回结果。</p>
+    </div>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden">
+    <div class="modal card">
+      <div class="modal-head">
+        <h3 id="modalTitle">详情</h3>
+        <button id="closeModalBtn" class="icon-btn">×</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <aside id="drawer" class="drawer">
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow">我的配方袋</p>
+        <h3>奖励 / 餐券 / 加料 / 招牌</h3>
+      </div>
+      <button id="closeDrawerBtn" class="icon-btn">×</button>
+    </div>
+    <div class="drawer-tabs">
+      <button class="drawer-tab active" data-tab="rewards">奖励</button>
+      <button class="drawer-tab" data-tab="discounts">餐券</button>
+      <button class="drawer-tab" data-tab="buffs">加料</button>
+      <button class="drawer-tab" data-tab="marks">招牌</button>
+    </div>
+    <div id="drawerContent" class="drawer-content"></div>
+  </aside>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>
