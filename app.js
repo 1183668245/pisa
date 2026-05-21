@@ -8,8 +8,8 @@
     rpcUrl: "https://rpc.ankr.com/bsc/84faef12e33fca8dbfc2e76e72880d034dbd10a5b1d1f3db6633546ece736b71", // Ankr 专用节点 RPC 链接
     explorer: "https://bscscan.com",
     factoryAddress: "0x2B098A7E793e7B953cDBbE33Cb91368e0DDC9789", // 主网暂未部署，留空
-    vaultAddress: "", // 主网暂未部署，留空
-    tokenAddress: "", // 主网暂未部署，留空
+    vaultAddress: "0x7eC4Ce8525cf38bf81e2337C5710E645b01d9F11", // 主网暂未部署，留空
+    tokenAddress: "0x65f6bc9be54b9fc834c44bafde80a5b9e8d57777", // 主网暂未部署，留空
   };
 
   const CONFIG_STORAGE_KEY = `spp:config:${CONFIG.chainId}`;
