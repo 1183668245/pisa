@@ -7,9 +7,9 @@
     chainName: "BNB Smart Chain",
     rpcUrl: "https://rpc.ankr.com/bsc/84faef12e33fca8dbfc2e76e72880d034dbd10a5b1d1f3db6633546ece736b71", // Ankr 专用节点 RPC 链接
     explorer: "https://bscscan.com",
-    factoryAddress: "", // 主网暂未部署，留空
-    vaultAddress: "", // 主网暂未部署，留空
-    tokenAddress: "", // 主网暂未部署，留空
+    factoryAddress: "0xD0F5167a14D54b87B3668f5a64cCDADDF8115395", // 主网暂未部署，留空
+    vaultAddress: "0x4ECFE220cDA5001388b64854879B9eefd6eD54bb", // 主网暂未部署，留空
+    tokenAddress: "0x4715a5a079a51383796562a2308d857b30937777", // 主网暂未部署，留空
   };
 
   const CONFIG_STORAGE_KEY = `spp:config:${CONFIG.chainId}`;
