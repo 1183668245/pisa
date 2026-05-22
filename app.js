@@ -241,7 +241,9 @@
   }
 
   function formatBnb(value) {
-    return `${ethers.formatEther(value)} BNB`;
+    const etherValue = ethers.formatEther(value);
+    // 使用 parseFloat 避免截断后出现如 0.0000 的情况，保留最多 4 位小数
+    return `${parseFloat(Number(etherValue).toFixed(4))} BNB`;
   }
 
   function zoneInfo(id) {
@@ -564,7 +566,7 @@
   }
 
   function renderHero() {
-    el.heroBnbPool.textContent = formatBnb(state.publicData.accumulatedBnbTax);
+    el.heroBnbPool.textContent = parseFloat(Number(ethers.formatEther(state.publicData.accumulatedBnbTax)).toFixed(4));
     el.heroBlindBoxPool.textContent = formatToken(state.publicData.blindBoxPool);
     el.heroOccupiedSeats.textContent = `${occupiedSeatCount()} / 100`;
     if(el.blindBoxPoolText) el.blindBoxPoolText.textContent = formatToken(state.publicData.blindBoxPool);
