@@ -576,14 +576,17 @@
     const nextTime = state.publicData.lastDistributionTime + 1800;
     const now = Math.floor(Date.now() / 1000);
     const remain = nextTime - now;
-    if (!el.heroNextSettlement) return;
-    if (remain <= 0) {
-      el.heroNextSettlement.textContent = "可结算";
-      return;
+    
+    let timeStr = "可结算";
+    if (remain > 0) {
+      const m = Math.floor(remain / 60);
+      const s = remain % 60;
+      timeStr = `${m}分 ${String(s).padStart(2, "0")}秒`;
     }
-    const m = Math.floor(remain / 60);
-    const s = remain % 60;
-    el.heroNextSettlement.textContent = `${m}分 ${String(s).padStart(2, "0")}秒`;
+    
+    if (el.heroNextSettlement) el.heroNextSettlement.textContent = timeStr;
+    const myModalCd = document.getElementById("myModalCountdown");
+    if (myModalCd) myModalCd.textContent = timeStr;
   }
 
   function seatFilterLabel(filter) {
@@ -1132,8 +1135,8 @@
             <em>${seatText}</em>
           </div>
           <div class="my-modal-balance">
-            <span>我的代币余额</span>
-            <strong>${formatToken(state.userData.balance)}</strong>
+            <span>下次分红倒计时</span>
+            <strong id="myModalCountdown" style="color:var(--primary)">--</strong>
           </div>
         </div>
 
@@ -1141,7 +1144,7 @@
           <div class="my-modal-card"><span>待领取回馈（BNB）</span><strong>${formatBnb(state.userData.pendingBNB)}</strong></div>
           <div class="my-modal-card"><span>待领取$披萨</span><strong>${formatToken(state.userData.unclaimedNTM)}</strong></div>
           <div class="my-modal-card"><span>配方袋$披萨奖励</span><strong>${formatToken(state.userData.backpackTokenRewards)}</strong></div>
-          <div class="my-modal-card"><span>配方袋物品总数</span><strong>${inventoryCount}</strong></div>
+          <div class="my-modal-card"><span>我的代币余额</span><strong>${formatToken(state.userData.balance)}</strong></div>
         </div>
 
         <div class="my-modal-strip">
